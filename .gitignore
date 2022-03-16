@@ -1,5 +1,2 @@
 config.js
 node_modules
-.DS_Store
-notes.txt
-dist/bundle.js
