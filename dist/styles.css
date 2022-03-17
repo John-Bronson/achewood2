@@ -1,3 +1,24 @@
 h1 {
   color: hotpink;
+  margin-left:1025px;
+}
+
+.blogPost {
+  background-color: rgb(203, 203, 203);
+  width: 800px;
+  margin-left:925px;
+  border-style: dotted;
+  margin-bottom: 10px;
+}
+
+.comicStrip {
+  margin-left:925px;
+}
+
+.dateControls {
+  margin-left:00px;
+  cursor:pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
 }
