@@ -1,16 +1,10 @@
 import React from 'react';
 
-class ComicStrip extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <h2 >Comic Strip</h2>
-    )
-  }
-}
+const ComicStrip = (props) => (
+  <div className="comicStrip">
+    {/* <h2 onClick={() => console.log(props)}>Comic</h2> */}
+    <img src={props.stripURL} />
+  </div>
+)
 
 export default ComicStrip
