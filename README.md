@@ -1,4 +1,4 @@
-![](https://i.imgur.com/hPNYfXq.png)
+![](https://imgur.com/zEe0A9t)
 # Achewood v2.0
 A new website for a classic momentary diversion on the road to the grave
 ### Table of Contents
@@ -44,16 +44,10 @@ A new website for a classic momentary diversion on the road to the grave
 ###  Technologies🧪
 <img src="https://www.drupal.org/files/project-images/animate.png" width="200"/><img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg" width="200"/>
 <img src="https://www.bypeople.com/wp-content/uploads/2018/10/date-fns-js-featured-4.png" width="200"/>
-<img src="https://github.com/faker-js/faker/raw/main/docs/public/logo.svg" width="200"/>
-<img src="https://www.vectorlogo.zone/logos/firebase/firebase-ar21.svg" width="200"/>
-<img src="https://www.vectorlogo.zone/logos/jquery/jquery-ar21.svg" width="200"/>
 <img src="https://mui.com/static/logo.png" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg" width="200"/>
-<img src="https://redux.js.org/img/redux-logo-landscape.png" width="200"/>
-<img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg" width="200"/>
-<img src="https://www.vectorlogo.zone/logos/twilio/twilio-ar21.svg" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/js_webpack/js_webpack-ar21.svg" width="200"/>
 
 
