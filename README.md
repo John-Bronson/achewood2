@@ -29,11 +29,9 @@ Set up a config.ts with the following:
 - [John Bronson](https://www.linkedin.com/in/john-bronson/)
   - <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="60"/> [Github](https://github.com/victorsmonster)
 
-###  Technologies🧪
-<img src="https://www.drupal.org/files/project-images/animate.png" width="200"/><img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg" width="200"/>
+###  Technologies🧪\
 <img src="https://www.bypeople.com/wp-content/uploads/2018/10/date-fns-js-featured-4.png" width="200"/>
 <img src="https://mui.com/static/logo.png" width="200"/>
-<img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg" width="200"/>
 <img src="https://www.vectorlogo.zone/logos/js_webpack/js_webpack-ar21.svg" width="200"/>
