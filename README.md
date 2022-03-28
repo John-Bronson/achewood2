@@ -1,4 +1,4 @@
-![](https://imgur.com/zEe0A9t)
+![](https://i.imgur.com/zEe0A9t.png)
 # Achewood v2.0
 A new website for a classic momentary diversion on the road to the grave
 ### Table of Contents
