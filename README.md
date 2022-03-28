@@ -7,15 +7,6 @@ A new website for the classic momentary diversion on the road to the grave
 3. [Installation](#Installation)
 4. [Contributors](#Contributors)
 
-
-
-### Introduction✨
-####  Login
-![](https://imgur.com/Svwvsi7.gif)
-
-### UI Design - Figma
-![](https://i.imgur.com/FOE5Nis.png)
-
 ###  Installation and Setup🚀
 ```
 $ git clone https://github.com/John-Bronson/achewood2.git
