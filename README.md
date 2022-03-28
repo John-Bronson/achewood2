@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/zEe0A9t.png)
 # Achewood v2.0
-A new website for a classic momentary diversion on the road to the grave
+A new website for the classic momentary diversion on the road to the grave
 ### Table of Contents
 1. [Introuction](#Introduction)
 2. [Technologies](#Technologies)
@@ -13,33 +13,8 @@ A new website for a classic momentary diversion on the road to the grave
 ####  Login
 ![](https://imgur.com/Svwvsi7.gif)
 
-#### Group Chats & DMs
-![](https://imgur.com/RuGRgmw.gif)
-
-#### Create a Group
-![](https://imgur.com/EhUggEY.gif)
-
-#### Meeting Invites
-![](https://imgur.com/Id5uw7w.gif)
-
-#### Video Chat
-![](https://imgur.com/fuYmzEK.gif)
-
-#### Create Memes
-![](https://imgur.com/apLnobo.gif)
-
-#### Logout
-![](https://imgur.com/QIRAXZ7.gif)
-
-
 ### UI Design - Figma
 ![](https://i.imgur.com/FOE5Nis.png)
-![](https://i.imgur.com/WLgVcz3.png)
-![](https://i.imgur.com/tU2VJrh.png)
-![](https://i.imgur.com/qpRJ88j.png)
-![](https://i.imgur.com/hm7DPK4.png)
-![](https://i.imgur.com/fK0Ks9X.png)
-![](https://i.imgur.com/Or5O2XV.png)
 
 ###  Technologies🧪
 <img src="https://www.drupal.org/files/project-images/animate.png" width="200"/><img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-ar21.svg" width="200"/>
@@ -53,15 +28,14 @@ A new website for a classic momentary diversion on the road to the grave
 
 ###  Installation and Setup🚀
 ```
-$ git clone https://github.com/Cardamom-BlueOcean/study.io
+$ git clone https://github.com/John-Bronson/achewood2.git
 $ npm install
-$ npm start
+$ npm run server-dev
 $ npm run watch
 ```
 Set up a config.ts with the following:
 
-* firebase config
-
+* [Google Blogger API key](https://developers.google.com/blogger/docs/3.0/using#APIKey)
 
 ### Contributors🤝
 - [BJ White](https://www.linkedin.com/in/bj-white/)
