@@ -35,7 +35,7 @@ $ npm run watch
 ```
 Set up a config.ts with the following:
 
-* [Google Blogger API key](https://developers.google.com/blogger/docs/3.0/using#APIKey)
+* Google Blogger API key: [Instructions here](https://developers.google.com/blogger/docs/3.0/using#APIKey)
 
 ### Contributors🤝
 - [BJ White](https://www.linkedin.com/in/bj-white/)
