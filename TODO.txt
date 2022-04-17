@@ -1,4 +1,5 @@
--create a database of all comic strips, and get them all in the app.
+-create a database of all comic strips, and get them all in the app. Use firebase.
 -get the blog posts in that database (TBD whether/when these should check for new content)
+-Deploy using firebase. (Actual MVP status!)
 -implement "next/prev date with content" functionality.
 -get all links in header/footer working.
