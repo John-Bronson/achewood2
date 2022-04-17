@@ -49,13 +49,10 @@ class App extends React.Component {
     })
   }
 
-  handlePrevDayClick() {
-    let tempDate = new Date(this.state.currentDate)
-    console.log(tempDate)
-    tempDate.setDate(tempDate.getDate() - 1)
-    // console.log(JSON.stringify(tempDate))
-    // let stringifiedNewDate = JSON.stringify(tempDate)
-    // console.log(stringifiedNewDate)
+  useEffect(() => {
+    getTodayStrip()
+    getTodayBlogPosts()
+  }, [currentDate])
 
     this.setState({
       currentDate: tempDate
@@ -106,22 +103,23 @@ class App extends React.Component {
       });
   }
 
-  getTodaysContents() {
-    this.getTodayStrip()
-    this.getTodayBlogPosts()
+  const handleSingleDayClick = (days) => {
+    let tempDate = new Date(currentDate)
+    tempDate.setDate(tempDate.getDate() + days)
+    setCurrentDate(tempDate)
   }
 
-  render() {
-    return (
+  return (
+    <div>
       <div className="App">
         <Header />
         <hr className="section-divider" />
         <div id="body">
           <div id="comicSection">
             <div className="dateControls">
-              <div onClick={() => this.handlePrevDayClick()}>&laquo;</div>
-              <div>{JSON.stringify(this.state.currentDate)}</div>
-              <div onClick={() => this.handleNextDayClick()} >&raquo;</div>
+              <div onClick={() => handleSingleDayClick(-1)}> &laquo; </div>
+              <div>{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getDate()}, {currentDate.getFullYear()}</div>
+              <div onClick={() => handleSingleDayClick(1)} >&raquo; </div>
             </div>
 
             <ComicStrip stripURL={this.state.currentStrip} />
@@ -136,8 +134,8 @@ class App extends React.Component {
         </div>
         <Footer />
       </div >
-    )
-  }
+    </div >
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -2,8 +2,10 @@ import React from 'react';
 
 const ComicStrip = (props) => (
   <div className="comicStrip">
-    {/* <h2 onClick={() => console.log(props)}>Comic</h2> */}
-    <img src={props.stripURL} />
+    {props.stripURL === '' ?
+      <h1>no comic strip on this day</h1>
+      :
+      <img src={props.stripURL} />}
   </div>
 )
 
