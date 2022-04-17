@@ -15,9 +15,10 @@ const App = () => {
   const [currentBlogPosts, setCurrentBlogPosts] = useState([])
   const [currentStrip, setCurrentStrip] = useState('http://achewood.com/comic.php?date=07012004')
 
-  // useEffect(() => {
-  //   getTodaysContents()
-  // })
+  useEffect(() => {
+    getTodayStrip()
+    getTodayBlogPosts()
+  }, [currentDate])
 
   const getTodayStrip = () => {
     console.log('getting blog posts')
@@ -59,34 +60,23 @@ const App = () => {
       });
   }
 
-  const getTodaysContents = () => {
-    getTodayStrip()
-    getTodayBlogPosts()
-  }
-
-  //       currentBlogPosts: [],
-  //       currentStrip: 'http://achewood.com/comic.php?date=07012004'
-
   const handleSingleDayClick = (days) => {
     let tempDate = new Date(currentDate)
     tempDate.setDate(tempDate.getDate() + days)
     setCurrentDate(tempDate)
-    getTodayStrip()
-    getTodayBlogPosts()
   }
 
   return (
     <div>
-      <h1>{currentDate.toString()}</h1>
       <div className="App">
         <Header />
         <hr className="section-divider" />
         <div id="body">
           <div id="comicSection">
             <div className="dateControls">
-              <div onClick={() => handleSingleDayClick(-1)}> &laquo;_ </div>
-              <div>{JSON.stringify(currentDate)}</div>
-              <div onClick={() => handleSingleDayClick(1)} >_&raquo; </div>
+              <div onClick={() => handleSingleDayClick(-1)}> &laquo; </div>
+              <div>{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getDate()}, {currentDate.getFullYear()}</div>
+              <div onClick={() => handleSingleDayClick(1)} >&raquo; </div>
             </div>
 
             <ComicStrip stripURL={currentStrip} />
@@ -101,8 +91,6 @@ const App = () => {
         </div>
         <Footer />
       </div >
-
-
     </div >
   )
 }
