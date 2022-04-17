@@ -1,0 +1,4 @@
+-create a database of all comic strips, and get them all in the app.
+-get the blog posts in that database (TBD whether/when these should check for new content)
+-implement "next/prev date with content" functionality.
+-get all links in header/footer working.
