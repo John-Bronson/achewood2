@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 var axios = require('axios');
 import styled from 'styled-components'
@@ -10,125 +10,90 @@ import BlogPost from './BlogPost.jsx'
 
 //TODO: Material UI for calendar and date picker?
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentDate: '2004-07-01T12:00:00.000Z',
-      currentBlogPosts: [],
-      currentStrip: 'http://achewood.com/comic.php?date=07012004'
-    }
-  }
+const App = () => {
+  const [currentDate, setCurrentDate] = useState(new Date('2004-07-01T15:00:00.000Z'))
+  const [currentBlogPosts, setCurrentBlogPosts] = useState([])
+  const [currentStrip, setCurrentStrip] = useState('http://achewood.com/comic.php?date=07012004')
 
-  componentDidMount() {
-    let initialCurrentDate = new Date('2004-07-01T12:00:00.000Z')
-    this.setState({
-      currentDate: initialCurrentDate
-    })
+  // useEffect(() => {
+  //   getTodaysContents()
+  // })
 
-    this.getTodaysContents()
-    console.log('current date at end of componentDidMount:', this.state.currentDate)
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.currentDate !== prevState.currentDate) {
-      this.getTodaysContents()
-    }
-  }
-
-  handleNextDayClick() {
-    let tempDate = new Date(this.state.currentDate)
-    console.log(tempDate)
-    tempDate.setDate(tempDate.getDate() + 1)
-    // console.log(JSON.stringify(tempDate))
-    // let stringifiedNewDate = JSON.stringify(tempDate)
-    // console.log(stringifiedNewDate)
-
-    this.setState({
-      currentDate: tempDate
-    })
-  }
-
-  handlePrevDayClick() {
-    let tempDate = new Date(this.state.currentDate)
-    console.log(tempDate)
-    tempDate.setDate(tempDate.getDate() - 1)
-    // console.log(JSON.stringify(tempDate))
-    // let stringifiedNewDate = JSON.stringify(tempDate)
-    // console.log(stringifiedNewDate)
-
-    this.setState({
-      currentDate: tempDate
-    })
-  }
-
-  getTodayStrip() {
+  const getTodayStrip = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
       url: 'http://localhost:3000/strip/',
       headers: {
         'Content-Type': 'application/json',
-        'referencedate': this.state.currentDate
+        'referencedate': currentDate.toString()
       }
     }).then((response) => {
-      console.log('requesting new strip with date', this.state.currentDate)
+      console.log('requesting new strip with date', currentDate)
       console.log('response received for new strip. it is', response.data)
-      this.setState({
-        currentStrip: response.data
-      })
+      setCurrentStrip(response.data)
     })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  getTodayBlogPosts() {
+  const getTodayBlogPosts = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
       url: 'http://localhost:3000/blogs/',
       headers: {
         'Content-Type': 'application/json',
-        'referencedate': this.state.currentDate
+        'referencedate': currentDate
       }
     }).then((response) => {
       console.log('response received. it is', response.data)
       //todo: Convert date string to date object for pretty display in blog posts
       //from server side: characters[i].data.items[j].publishedObject = new Date(characters[i].data.items[j].published)
+      setCurrentBlogPosts(response.data)
 
-      this.setState({
-        currentBlogPosts: response.data
-      })
     })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  getTodaysContents() {
-    this.getTodayStrip()
-    this.getTodayBlogPosts()
+  const getTodaysContents = () => {
+    getTodayStrip()
+    getTodayBlogPosts()
   }
 
-  render() {
-    return (
+  //       currentBlogPosts: [],
+  //       currentStrip: 'http://achewood.com/comic.php?date=07012004'
+
+  const handleSingleDayClick = (days) => {
+    let tempDate = new Date(currentDate)
+    tempDate.setDate(tempDate.getDate() + days)
+    setCurrentDate(tempDate)
+    getTodayStrip()
+    getTodayBlogPosts()
+  }
+
+  return (
+    <div>
+      <h1>{currentDate.toString()}</h1>
       <div className="App">
         <Header />
         <hr className="section-divider" />
         <div id="body">
           <div id="comicSection">
             <div className="dateControls">
-              <div onClick={() => this.handlePrevDayClick()}>&laquo;</div>
-              <div>{JSON.stringify(this.state.currentDate)}</div>
-              <div onClick={() => this.handleNextDayClick()} >&raquo;</div>
+              <div onClick={() => handleSingleDayClick(-1)}> &laquo;_ </div>
+              <div>{JSON.stringify(currentDate)}</div>
+              <div onClick={() => handleSingleDayClick(1)} >_&raquo; </div>
             </div>
 
-            <ComicStrip stripURL={this.state.currentStrip} />
-            {this.state.currentBlogPosts.length === 0 ?
+            <ComicStrip stripURL={currentStrip} />
+            {currentBlogPosts.length === 0 ?
               <h1>no blog posts on this day</h1>
               :
-              this.state.currentBlogPosts.map((currentPost) => (
+              currentBlogPosts.map((currentPost) => (
                 <BlogPost currentPost={currentPost} key={currentPost.id} />
               ))}
             <img src="https://achewood.com/img/achewood_buy_print_button_v2.png" width="350"></img>
@@ -136,8 +101,10 @@ class App extends React.Component {
         </div>
         <Footer />
       </div >
-    )
-  }
+
+
+    </div >
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
