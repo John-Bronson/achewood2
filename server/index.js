@@ -28,11 +28,11 @@ app.get('/strip/', (req, res) => {
 
   sampleComicData = {
     '2004-07-01T12:00:00.000Z': 'http://achewood.com/comic.php?date=07012004',
-    'Thu Jul 01 2004 07:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07012004',
-    'Fri Jul 02 2004 07:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07022004',
-    'Sat Jul 03 2004 07:00:00 GMT-0500 (Central Daylight Time)': '',
-    'Tue Jul 06 2004 07:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07062004',
-    'Wed Jul 07 2004 07:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07072004'
+    'Thu Jul 01 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07012004',
+    'Fri Jul 02 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07022004',
+    'Sat Jul 03 2004 10:00:00 GMT-0500 (Central Daylight Time)': '',
+    'Tue Jul 06 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07062004',
+    'Wed Jul 07 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07072004'
   }
 
   console.log('referencedate is ', req.headers.referencedate)
