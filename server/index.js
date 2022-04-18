@@ -24,6 +24,8 @@ function getPosts(blogID) {
 
 blogPostCache = []
 
+app.get('/blogPostCache')
+
 app.get('/strip/', (req, res) => {
 
   sampleComicData = {

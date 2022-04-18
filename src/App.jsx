@@ -8,6 +8,9 @@ import Footer from './Footer.jsx'
 import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
+const { API_KEY } = require('../config.js')
+import { initializeApp } from 'firebase/app';
+
 //TODO: Material UI for calendar and date picker?
 
 class App extends React.Component {
@@ -109,12 +112,27 @@ class App extends React.Component {
     setCurrentDate(tempDate)
   }
 
+  function getPosts(blogID) {
+    return axios({
+      method: 'get',
+      url: `https://www.googleapis.com/blogger/v3/blogs/${blogID}/posts?key=${API_KEY}&maxResults=200`,
+      headers: {}
+    })
+  }
+
+
   return (
     <div>
       <div className="App">
         <Header />
         <hr className="section-divider" />
         <div id="body">
+          <button onClick={() => {
+            console.log('fetching blogs!')
+            getPosts('7511836').then((data) => {
+              console.log(data);
+            })
+          }}> hello!</button>
           <div id="comicSection">
             <div className="dateControls">
               <div onClick={() => handleSingleDayClick(-1)}> &laquo; </div>

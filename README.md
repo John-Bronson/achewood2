@@ -4,7 +4,7 @@
 
 A new website for the classic momentary diversion on the road to the grave
 
-### Table of Contents 
+### Table of Contents
 
 1. [Introuction](#Introduction)
 2. [Roadmap](#Roadmap)
@@ -18,31 +18,24 @@ Identified the need for a more user-friendly way to browse blog posts generated 
 
 Improved the user experience for the comic itself, adding a modern full screen interface and alternate text display for the visual media
 
-### Roadmap 🗺
+### Development Roadmap
 
-#### Step 1
+## Step 1
 
 - create a database of all comic strips along with their alt text. Get them all displaying in the app. Use firebase.
 - get the blog posts in that database (TBD whether/when these should check for new content). Display blog posts in app from the database.
 - Deploy using firebase. (Actual MVP status!)
 
-#### Step 2
+## Step 2
 
 - style individual blogs to match their Blogger styles
 - implement "next/prev date with content" functionality.
 - get all links in header/footer working.
 
-#### Step 3
+## Step 3
 
 - Modern site theme + toggle to switch between classic/modern mode
 - Modern theme: date picker with colored indicators for content (blog/strip)
-- Scrape transcriptions from ohnorobot when available and make them available on the page
-
-#### Step 4
-
-- Pie in the sky features requiring authentication: 
-- User can bookmark individual comics/blog posts and open a list of their bookmarked faves
-- Discussion forums? Maybe pegged to each piece of content? This is scary
 
 ### Installation and Setup🚀
 
