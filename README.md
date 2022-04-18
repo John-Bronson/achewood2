@@ -20,19 +20,19 @@ Improved the user experience for the comic itself, adding a modern full screen i
 
 ### Roadmap
 
-## Step 1
+#### Step 1
 
 - create a database of all comic strips along with their alt text. Get them all displaying in the app. Use firebase.
 - get the blog posts in that database (TBD whether/when these should check for new content). Display blog posts in app from the database.
 - Deploy using firebase. (Actual MVP status!)
 
-## Step 2
+#### Step 2
 
 - style individual blogs to match their Blogger styles
 - implement "next/prev date with content" functionality.
 - get all links in header/footer working.
 
-## Step 3
+#### Step 3
 
 - Modern site theme + toggle to switch between classic/modern mode
 - Modern theme: date picker with colored indicators for content (blog/strip)
