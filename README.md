@@ -36,6 +36,13 @@ Improved the user experience for the comic itself, adding a modern full screen i
 
 - Modern site theme + toggle to switch between classic/modern mode
 - Modern theme: date picker with colored indicators for content (blog/strip)
+- Scrape transcriptions from ohnorobot when available and make them available on the page
+
+#### Step 4
+
+- Pie in the sky features requiring authentication: 
+- User can bookmark individual comics/blog posts and open a list of their bookmarked faves
+- Discussion forums? Maybe pegged to each piece of content? This is scary
 
 ### Installation and Setup🚀
 
