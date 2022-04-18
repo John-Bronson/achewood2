@@ -7,7 +7,7 @@ A new website for the classic momentary diversion on the road to the grave
 ### Table of Contents
 
 1. [Introuction](#Introduction)
-2. [Roadmap] (#Roadmap)
+2. [Roadmap](#Roadmap)
 3. [Technologies](#Technologies)
 4. [Installation](#Installation)
 5. [Contributors](#Contributors)
