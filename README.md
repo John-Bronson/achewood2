@@ -7,7 +7,7 @@ A new website for the classic momentary diversion on the road to the grave
 ### Table of Contents
 
 1. [Introuction](#Introduction)
-2. [Development Roadmap] (#Development Roadmap)
+2. [Roadmap] (#Roadmap)
 3. [Technologies](#Technologies)
 4. [Installation](#Installation)
 5. [Contributors](#Contributors)
@@ -18,7 +18,7 @@ Identified the need for a more user-friendly way to browse blog posts generated 
 
 Improved the user experience for the comic itself, adding a modern full screen interface and alternate text display for the visual media
 
-### Development Roadmap
+### Roadmap
 
 ## Step 1
 
