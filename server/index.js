@@ -1,7 +1,14 @@
 const express = require('express')
-const puppeteer = require('puppeteer')
+//const puppeteer = require('puppeteer')
 const axios = require('axios')
 const { API_KEY } = require('../config.js')
+const fs = require('fs/promises')
+let comicsExport = require('../comicsArchive.js')
+
+console.log(typeof comicsExport)
+console.log(comicsExport.savedComics.length)
+let comicsArchive = comicsExport.savedComics
+//console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
 
 const app = express()
 const port = 3000
@@ -17,32 +24,33 @@ const datesAreOnSameDay = (first, second) =>
 let comicsCache = []
 let blogPostCache = []
 
-async function getComics() {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-  await page.goto('https://achewood.com/list.php')
+// async function getComics() {
+//   const browser = await puppeteer.launch()
+//   const page = await browser.newPage()
+//   await page.goto('https://achewood.com/list.php')
 
-  const comicsData = await page.evaluate(() => {
-    const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
-      const date = link.href.split('date=')[1] // produces something like '10012001'
-      let jsDate = new Date(date.substring(4), date.substring(0, 2) - 1, date.substring(2, 4), 12, 0, 0)
-      return [jsDate.toString(), link.text, link.href]
-    });
+//   const comicsData = await page.evaluate(() => {
+//     const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
+//       const date = link.href.split('date=')[1] // produces something like '10012001'
+//       let jsDate = new Date(date.substring(4), date.substring(0, 2) - 1, date.substring(2, 4), 12, 0, 0)
+//       return [jsDate.toString(), link.text, link.href]
+//     });
 
-    return comicsArray;
-  });
+//     return comicsArray;
+//   });
 
-  //console.log(comicsData)
-  await browser.close()
+//   //console.log(comicsData)
+//   await browser.close()
 
-  return comicsData
-}
+//   return comicsData
+// }
 
-getComics().then((data) => {
-  comicsCache = data
-  console.log('comicsCache is ', comicsCache)
-  console.log('comicsCache is loaded up!')
-})
+// getComics().then((data) => {
+//   comicsCache = data
+//   console.log('comicsCache is ', comicsCache)
+//   fs.writeFile('titles.txt', JSON.stringify(comicsCache))
+//   console.log('comicsCache is loaded up!')
+// })
 
 function getPosts(blogID) {
   return axios({
@@ -65,10 +73,10 @@ function convertStripURL(dateString) {
 }
 
 function getComicFromDate(date) {
-  for (i = 0; i < comicsCache.length; i++) {
-    if (datesAreOnSameDay(date, new Date(comicsCache[i][0]))) {
+  for (i = 0; i < comicsArchive.length; i++) {
+    if (datesAreOnSameDay(date, new Date(comicsArchive[i][0]))) {
 
-      return convertStripURL(comicsCache[i])
+      return convertStripURL(comicsArchive[i])
 
       //console.log('good match, returning', comicsCache[i][2])
       //return comicsCache[i][2] //needs to be converted to image URL
