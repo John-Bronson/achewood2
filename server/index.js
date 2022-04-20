@@ -21,7 +21,6 @@ async function getComics() {
   const page = await browser.newPage()
   await page.goto('https://achewood.com/list.php')
 
-
   const comicsData = await page.evaluate(() => {
     const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
 
@@ -47,7 +46,6 @@ getComics().then((data) => {
   console.log('comicsCache is loaded up!')
 })
 
-
 function getPosts(blogID) {
   return axios({
     method: 'get',
@@ -69,14 +67,9 @@ function convertStripURL(dateString) {
   let formattedDate
   let formattedMonth
 
-  console.log('dateString is ', dateString)
-  console.log('date is ', date)
-
   date.getDate() < 10 ? formattedDate = '0' + date.getDate().toString() : formattedDate = date.getDate()
 
   date.getMonth() < 10 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
-
-  console.log('formattedDate is ', formattedDate)
 
   return `https://achewood.com/comic.php?date=${formattedMonth}${formattedDate}${date.getFullYear()}`
 }
