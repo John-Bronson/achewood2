@@ -14,6 +14,38 @@ const datesAreOnSameDay = (first, second) =>
   first.getMonth() === second.getMonth() &&
   first.getDate() === second.getDate()
 
+let comicsCache = []
+
+async function getComics() {
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.goto('https://achewood.com/list.php')
+
+  const comicsData = await page.evaluate(() => {
+    const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
+
+      const date = link.href.split('date=')[1] // produces something like '10012001'
+      let jsDate = new Date(date.substring(4), date.substring(0, 2) - 1, date.substring(2, 4), 12, 0, 0)
+
+
+      return [jsDate.toString(), link.text, link.href]
+    });
+
+    return comicsArray;
+  });
+
+  //console.log(comicsData)
+  await browser.close()
+
+  return comicsData
+}
+
+getComics().then((data) => {
+  comicsCache = data
+  console.log('comicsCache is ', comicsCache)
+  console.log('comicsCache is loaded up!')
+})
+
 function getPosts(blogID) {
   return axios({
     method: 'get',
@@ -22,7 +54,29 @@ function getPosts(blogID) {
   })
 }
 
-blogPostCache = []
+let blogPostCache = []
+
+//getComicURLFromThisDate(date)
+//iterate through comicStripCache
+//  if the current strip was published on the same date as the date passed in
+//    return the URL of the strip from the current strip
+//return null
+
+function convertStripURL(dateString) {
+  let date = new Date(dateString[0])
+  let formattedDate
+  let formattedMonth
+
+  date.getDate() < 10 ? formattedDate = '0' + date.getDate().toString() : formattedDate = date.getDate()
+
+  date.getMonth() < 10 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
+
+  return `https://achewood.com/comic.php?date=${formattedMonth}${formattedDate}${date.getFullYear()}`
+}
+
+function getComicFromDate(date) {
+  for (i = 0; i < comicsCache.length; i++) {
+    if (datesAreOnSameDay(date, new Date(comicsCache[i][0]))) {
 
 app.get('/blogPostCache')
 
