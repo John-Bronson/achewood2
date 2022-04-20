@@ -15,6 +15,7 @@ const datesAreOnSameDay = (first, second) =>
   first.getDate() === second.getDate()
 
 let comicsCache = []
+let blogPostCache = []
 
 async function getComics() {
   const browser = await puppeteer.launch()
@@ -23,11 +24,8 @@ async function getComics() {
 
   const comicsData = await page.evaluate(() => {
     const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
-
       const date = link.href.split('date=')[1] // produces something like '10012001'
       let jsDate = new Date(date.substring(4), date.substring(0, 2) - 1, date.substring(2, 4), 12, 0, 0)
-
-
       return [jsDate.toString(), link.text, link.href]
     });
 
@@ -53,14 +51,6 @@ function getPosts(blogID) {
     headers: {}
   })
 }
-
-let blogPostCache = []
-
-//getComicURLFromThisDate(date)
-//iterate through comicStripCache
-//  if the current strip was published on the same date as the date passed in
-//    return the URL of the strip from the current strip
-//return null
 
 function convertStripURL(dateString) {
   let date = new Date(dateString[0])
