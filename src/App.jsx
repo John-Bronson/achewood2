@@ -127,12 +127,6 @@ class App extends React.Component {
         <Header />
         <hr className="section-divider" />
         <div id="body">
-          <button onClick={() => {
-            console.log('fetching blogs!')
-            getPosts('7511836').then((data) => {
-              console.log(data);
-            })
-          }}> hello!</button>
           <div id="comicSection">
             <div className="dateControls">
               <div onClick={() => handleSingleDayClick(-1)}> &laquo; </div>
