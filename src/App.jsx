@@ -9,7 +9,6 @@ import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
 const { API_KEY } = require('../config.js')
-
 //TODO: Material UI for calendar and date picker?
 
 const App = () => {
@@ -55,7 +54,6 @@ const App = () => {
       //todo: Convert date string to date object for pretty display in blog posts
       //from server side: characters[i].data.items[j].publishedObject = new Date(characters[i].data.items[j].published)
       setCurrentBlogPosts(response.data)
-
     })
       .catch((error) => {
         console.log(error);
