@@ -1,5 +1,5 @@
 const express = require('express')
-const cheerio = require('cheerio')
+const puppeteer = require('puppeteer')
 const axios = require('axios')
 const { API_KEY } = require('../config.js')
 
@@ -14,6 +14,40 @@ const datesAreOnSameDay = (first, second) =>
   first.getMonth() === second.getMonth() &&
   first.getDate() === second.getDate()
 
+let comicsCache = []
+
+async function getComics() {
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.goto('https://achewood.com/list.php')
+
+
+  const comicsData = await page.evaluate(() => {
+    const comicsArray = Array.from(document.querySelectorAll('dd > a')).map((link) => {
+
+      const date = link.href.split('date=')[1] // produces something like '10012001'
+      let jsDate = new Date(date.substring(4), date.substring(0, 2) - 1, date.substring(2, 4), 12, 0, 0)
+
+
+      return [jsDate.toString(), link.text, link.href]
+    });
+
+    return comicsArray;
+  });
+
+  //console.log(comicsData)
+  await browser.close()
+
+  return comicsData
+}
+
+getComics().then((data) => {
+  comicsCache = data
+  console.log('comicsCache is ', comicsCache)
+  console.log('comicsCache is loaded up!')
+})
+
+
 function getPosts(blogID) {
   return axios({
     method: 'get',
@@ -22,9 +56,43 @@ function getPosts(blogID) {
   })
 }
 
-blogPostCache = []
+let blogPostCache = []
 
-app.get('/blogPostCache')
+//getComicURLFromThisDate(date)
+//iterate through comicStripCache
+//  if the current strip was published on the same date as the date passed in
+//    return the URL of the strip from the current strip
+//return null
+
+function convertStripURL(dateString) {
+  let date = new Date(dateString[0])
+  let formattedDate
+  let formattedMonth
+
+  console.log('dateString is ', dateString)
+  console.log('date is ', date)
+
+  date.getDate() < 10 ? formattedDate = '0' + date.getDate().toString() : formattedDate = date.getDate()
+
+  date.getMonth() < 10 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
+
+  console.log('formattedDate is ', formattedDate)
+
+  return `https://achewood.com/comic.php?date=${formattedMonth}${formattedDate}${date.getFullYear()}`
+}
+
+function getComicFromDate(date) {
+  for (i = 0; i < comicsCache.length; i++) {
+    if (datesAreOnSameDay(date, new Date(comicsCache[i][0]))) {
+
+      return convertStripURL(comicsCache[i])
+
+      //console.log('good match, returning', comicsCache[i][2])
+      //return comicsCache[i][2] //needs to be converted to image URL
+    }
+  }
+  return ''
+}
 
 app.get('/strip/', (req, res) => {
 
@@ -37,9 +105,19 @@ app.get('/strip/', (req, res) => {
     'Wed Jul 07 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07072004'
   }
 
+  // the following three lines use sampleComicData
+  // console.log('referencedate is ', req.headers.referencedate)
+  // console.log(sampleComicData[req.headers.referencedate])
+  // res.status(200).send(sampleComicData[req.headers.referencedate])
+
+
+  convertedDate = new Date(req.headers.referencedate)
   console.log('referencedate is ', req.headers.referencedate)
-  console.log(sampleComicData[req.headers.referencedate])
-  res.status(200).send(sampleComicData[req.headers.referencedate])
+  console.log('converted date is ', convertedDate)
+  console.log(getComicFromDate(convertedDate))
+  console.log('string is currently ', getComicFromDate(convertedDate))
+
+  res.status(200).send(getComicFromDate(convertedDate))
 })
 
 app.get('/blogs/', (req, res) => {

@@ -4,3 +4,7 @@ individualComic = {
   'altText': 'strip\'s alt text. Need to check for special characters.',
   'published': 'date string'
 }
+
+comicList = {
+  comicDate: {}, //individualComic object
+}
