@@ -9,7 +9,6 @@ import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
 const { API_KEY } = require('../config.js')
-import { initializeApp } from 'firebase/app';
 
 //TODO: Material UI for calendar and date picker?
 
