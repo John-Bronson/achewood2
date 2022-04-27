@@ -5,8 +5,6 @@ const { API_KEY } = require('../config.js')
 const fs = require('fs/promises')
 let comicsExport = require('../comicsArchive.js')
 
-console.log(typeof comicsExport)
-console.log(comicsExport.savedComics.length)
 let comicsArchive = comicsExport.savedComics
 //console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
 
@@ -24,6 +22,16 @@ const datesAreOnSameDay = (first, second) =>
 let comicsCache = []
 let blogPostCache = []
 
+// This code uses puppeteer to scrape a list of comics from the achewood
+// archive page (list.php) and formats it for use elsewhere. For now I'm
+// using an archived version of this data because I had issues getting
+// Puppeteer running on an AWS EC2 instance. I plan on returning to using
+// this code when I can get puppeteer to work, because I also want to scrape
+// the alt-text from the comics - but only when a user accesses it. I want to
+// avoid hitting Achewood.com with almost 2000 requests at once - and I also
+// like that the site grabs the comic list when the server starts up because I
+// don't like the implication that no new strips will ever be posted :(
+//
 // async function getComics() {
 //   const browser = await puppeteer.launch()
 //   const page = await browser.newPage()
@@ -86,28 +94,7 @@ function getComicFromDate(date) {
 }
 
 app.get('/strip/', (req, res) => {
-
-  sampleComicData = {
-    '2004-07-01T12:00:00.000Z': 'http://achewood.com/comic.php?date=07012004',
-    'Thu Jul 01 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07012004',
-    'Fri Jul 02 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'http://achewood.com/comic.php?date=07022004',
-    'Sat Jul 03 2004 10:00:00 GMT-0500 (Central Daylight Time)': '',
-    'Tue Jul 06 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07062004',
-    'Wed Jul 07 2004 10:00:00 GMT-0500 (Central Daylight Time)': 'https://achewood.com/comic.php?date=07072004'
-  }
-
-  // the following three lines use sampleComicData
-  // console.log('referencedate is ', req.headers.referencedate)
-  // console.log(sampleComicData[req.headers.referencedate])
-  // res.status(200).send(sampleComicData[req.headers.referencedate])
-
-
   convertedDate = new Date(req.headers.referencedate)
-  console.log('referencedate is ', req.headers.referencedate)
-  console.log('converted date is ', convertedDate)
-  console.log(getComicFromDate(convertedDate))
-  console.log('string is currently ', getComicFromDate(convertedDate))
-
   res.status(200).send(getComicFromDate(convertedDate))
 })
 

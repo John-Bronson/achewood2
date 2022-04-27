@@ -64,6 +64,7 @@ const App = () => {
     let tempDate = new Date(currentDate)
     tempDate.setDate(tempDate.getDate() + days)
     setCurrentDate(tempDate)
+    // setCurrentDate(new Date(currentDate).setDate(tempDate.getDate() + days))
   }
 
   function getPosts(blogID) {
