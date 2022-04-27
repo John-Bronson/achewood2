@@ -4,6 +4,8 @@
 
 A new website for the classic momentary diversion on the road to the grave
 
+# [Provisional deployment! Click here to check it out.](http://ec2-23-22-249-229.compute-1.amazonaws.com:3000/)
+
 ### Table of Contents 
 
 1. [Introuction](#Introduction)
