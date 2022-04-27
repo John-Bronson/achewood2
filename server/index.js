@@ -11,7 +11,7 @@ let comicsArchive = comicsExport.savedComics
 //console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
 
 const app = express()
-const port = 3000
+const port = 80
 
 app.use(express.static(__dirname + '/../dist'));
 app.use(express.json());
@@ -179,5 +179,5 @@ app.get('/blogs/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('Achewood Aggregator listening on port 3000')
+  console.log(`Achewood Aggregator listening on port ${port}`)
 })

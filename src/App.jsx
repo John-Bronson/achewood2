@@ -25,7 +25,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: 'http://localhost:3000/strip/',
+      url: 'http://ec2-23-22-249-229.compute-1.amazonaws.com/strip/',
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate.toString()
@@ -44,7 +44,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: 'http://localhost:3000/blogs/',
+      url: 'http://ec2-23-22-249-229.compute-1.amazonaws.com/blogs/',
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate
