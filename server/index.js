@@ -77,7 +77,7 @@ function convertStripURL(dateString) {
 
   date.getDate() < 10 ? formattedDate = '0' + date.getDate().toString() : formattedDate = date.getDate()
 
-  date.getMonth() < 10 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
+  date.getMonth() < 9 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
 
   return `https://achewood.com/comic.php?date=${formattedMonth}${formattedDate}${date.getFullYear()}`
 }
