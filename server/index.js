@@ -1,15 +1,17 @@
 const express = require('express')
-//const puppeteer = require('puppeteer')
 const axios = require('axios')
 const { API_KEY } = require('../config.js')
-const fs = require('fs/promises')
+const { serverPort } = require('../config.js')
 let comicsExport = require('../comicsArchive.js')
+
+//const fs = require('fs/promises')
+//const puppeteer = require('puppeteer')
 
 let comicsArchive = comicsExport.savedComics
 //console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
 
 const app = express()
-const port = 80
+//const port = serverPort
 
 app.use(express.static(__dirname + '/../dist'));
 app.use(express.json());
@@ -165,6 +167,6 @@ app.get('/blogs/', (req, res) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`Achewood Aggregator listening on port ${port}`)
+app.listen(serverPort, () => {
+  console.log(`Achewood Aggregator listening on port ${serverPort}`)
 })
