@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 var axios = require('axios');
-import styled from 'styled-components'
+
+import DatePicker from "react-datepicker";
+//import "react-datepicker/dist/react-datepicker.css";
 
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
-const { API_KEY } = require('../config.js')
+const { API_KEY, serverURL } = require('../config.js')
+
 //TODO: Material UI for calendar and date picker?
 
 const App = () => {
@@ -25,7 +28,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: 'http://ec2-23-22-249-229.compute-1.amazonaws.com/strip/',
+      url: `${serverURL}/strip/`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate.toString()
@@ -44,7 +47,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: 'http://ec2-23-22-249-229.compute-1.amazonaws.com/blogs/',
+      url: `${serverURL}/blogs/`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate
@@ -75,7 +78,6 @@ const App = () => {
     })
   }
 
-
   return (
     <div>
       <div className="App">
@@ -84,9 +86,14 @@ const App = () => {
         <div id="body">
           <div id="comicSection">
             <div className="dateControls">
-              <div onClick={() => handleSingleDayClick(-1)}> &laquo; </div>
-              <div>{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getDate()}, {currentDate.getFullYear()}</div>
-              <div onClick={() => handleSingleDayClick(1)} >&raquo; </div>
+              <div onClick={() => handleSingleDayClick(-1)}> &laquo; Prev Date</div>
+              <div>
+                <DatePicker
+                  selected={currentDate}
+                  onChange={(date) => setCurrentDate(date)}
+                />
+              </div>
+              <div onClick={() => handleSingleDayClick(1)} >Next Date &raquo; </div>
             </div>
 
             <ComicStrip stripURL={currentStrip} />

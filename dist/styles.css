@@ -17,12 +17,12 @@ h6 { font-size: 0.9em; }
 } */
 
 .dateControls {
-	width: 200px;
+	width: 300px;
   margin-left:00px;
   cursor:pointer;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-size: 11px;
 }
 
