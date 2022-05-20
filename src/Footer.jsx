@@ -7,6 +7,8 @@ const Footer = (props) => (
 
       <div className="column left">
         New items coming to this exciting column soon! E-zines, subscriber archives, e-books, news, more. I just have to re-learn Gopher or whatever that is.
+        <hr />
+        5/20/2022: Added key bindings! Try out the left and right arrow, for fun.
       </div>
 
       <div className="column center">
