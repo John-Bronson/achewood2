@@ -12,8 +12,6 @@ import BlogPost from './BlogPost.jsx'
 
 const { API_KEY, serverURL } = require('../config.js')
 
-//TODO: Material UI for calendar and date picker?
-
 const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date('2004-07-01T15:00:00.000Z'))
   const [currentBlogPosts, setCurrentBlogPosts] = useState([])
@@ -24,8 +22,32 @@ const App = () => {
     getTodayBlogPosts()
   }, [currentDate])
 
+
+  function handleKeyPress(event) {
+    console.log('this mfer pressed', event.code)
+    if (event.code === 'ArrowRight') {
+      console.log('yeah! right key!');
+      let tempDate = new Date(currentDate)
+      tempDate.setDate(tempDate.getDate() + 1)
+      setCurrentDate(tempDate)
+    }
+    if (event.code === 'ArrowLeft') {
+      console.log('yeah! left key!');
+      let tempDate = new Date(currentDate)
+      tempDate.setDate(tempDate.getDate() - 1)
+      setCurrentDate(tempDate)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress)
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [handleKeyPress])
+
   const getTodayStrip = () => {
-    console.log('getting blog posts')
+    console.log(`getting today's strip`)
     axios({
       method: 'get',
       url: `${serverURL}/strip/`,
@@ -68,14 +90,6 @@ const App = () => {
     tempDate.setDate(tempDate.getDate() + days)
     setCurrentDate(tempDate)
     // setCurrentDate(new Date(currentDate).setDate(tempDate.getDate() + days))
-  }
-
-  function getPosts(blogID) {
-    return axios({
-      method: 'get',
-      url: `https://www.googleapis.com/blogger/v3/blogs/${blogID}/posts?key=${API_KEY}&maxResults=200`,
-      headers: {}
-    })
   }
 
   return (
