@@ -22,9 +22,8 @@ const App = () => {
     getTodayBlogPosts()
   }, [currentDate])
 
-
   function handleKeyPress(event) {
-    console.log('this mfer pressed', event.code)
+    console.log('user pressed', event.code)
     if (event.code === 'ArrowRight') {
       console.log('yeah! right key!');
       let tempDate = new Date(currentDate)
@@ -114,9 +113,8 @@ const App = () => {
             {currentBlogPosts.length === 0 ?
               <h1>no blog posts on this day</h1>
               :
-              currentBlogPosts.map((currentPost) => (
-                <BlogPost currentPost={currentPost} key={currentPost.id} />
-              ))}
+              currentBlogPosts.map(currentPost => <BlogPost currentPost={currentPost} key={currentPost.id} />)
+            }
             <img src="https://achewood.com/img/achewood_buy_print_button_v2.png" width="350"></img>
           </div>
         </div>

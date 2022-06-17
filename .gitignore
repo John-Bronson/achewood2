@@ -4,3 +4,4 @@ node_modules
 notes.txt
 dist/bundle.js
 fbpost.txt
+package-lock.json

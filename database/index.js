@@ -8,4 +8,11 @@ let achewoodSchema = mongoose.Schema({
   url: String
 })
 
-let 
+let Content = mongoose.model('Content', achewoodSchema)
+
+let getContent = (date) => { //get all content matching the date passed in
+  console.log('call to getContent successful')
+  return Content.find()
+}
+
+module.exports.getContent = getContent

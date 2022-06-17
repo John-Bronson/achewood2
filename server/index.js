@@ -2,12 +2,16 @@ const express = require('express')
 const axios = require('axios')
 const { API_KEY } = require('../config.js')
 const { serverPort } = require('../config.js')
-let comicsExport = require('../comicsArchive.js')
+
+let comicsArchive = require('../comicsArchive.js')
+
+const { getContent } = require('../database/index.js')
 
 //const fs = require('fs/promises')
 //const puppeteer = require('puppeteer')
 
-let comicsArchive = comicsExport.savedComics
+//let comicsArchive = require('../comicsArchive.js')
+
 //console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
 
 const app = express()
@@ -76,13 +80,13 @@ function convertStripURL(dateString) {
   let formattedMonth
 
   date.getDate() < 10 ? formattedDate = '0' + date.getDate().toString() : formattedDate = date.getDate()
-
   date.getMonth() < 9 ? formattedMonth = '0' + (date.getMonth() + 1).toString() : formattedMonth = date.getMonth() + 1
 
   return `https://achewood.com/comic.php?date=${formattedMonth}${formattedDate}${date.getFullYear()}`
 }
 
 function getComicFromDate(date) {
+  getContent(date)
   for (i = 0; i < comicsArchive.length; i++) {
     if (datesAreOnSameDay(date, new Date(comicsArchive[i][0]))) {
 
