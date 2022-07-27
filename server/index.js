@@ -1,5 +1,7 @@
 const express = require('express')
+const app = express()
 const axios = require('axios')
+const cors = require('cors')
 const { API_KEY } = require('../config.js')
 const { serverPort } = require('../config.js')
 
@@ -10,15 +12,12 @@ let comicsArchive = require('../comicsArchive.js')
 //const fs = require('fs/promises')
 //const puppeteer = require('puppeteer')
 
-//let comicsArchive = require('../comicsArchive.js')
 
-//console.log(comicsArchive, 'bro! its length is', comicsArchive.length)
-
-const app = express()
 //const port = serverPort
 
 app.use(express.static(__dirname + '/../dist'));
 app.use(express.json());
+app.use(cors())
 
 const datesAreOnSameDay = (first, second) =>
   first.getFullYear() === second.getFullYear() &&

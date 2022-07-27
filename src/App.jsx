@@ -10,7 +10,7 @@ import Footer from './Footer.jsx'
 import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
-const { API_KEY, serverURL } = require('../config.js')
+const { API_KEY, serverURL, serverPort } = require('../config.js')
 
 const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date('2004-07-01T15:00:00.000Z'))
@@ -44,12 +44,12 @@ const App = () => {
       document.removeEventListener('keydown', handleKeyPress)
     }
   }, [handleKeyPress])
-  
+
   const getTodayStrip = () => {
-    console.log(`getting today's strip at ${serverURL}`)
+    console.log(`getting today's strip at ${serverURL} with date ${currentDate}`)
     axios({
       method: 'get',
-      url: `${serverURL}/strip/`,
+      url: `${serverURL}:${serverPort}/strip/`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate.toString()
@@ -60,7 +60,7 @@ const App = () => {
       setCurrentStrip(response.data)
     })
       .catch((error) => {
-        console.log('UH OH DUDE THE STRIPS ARE BORKED:', error);
+        console.log('UH OH DUDES THE STRIPS ARE BORKED:', error);
       });
   }
 
@@ -68,7 +68,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: `${serverURL}/blogs/`,
+      url: `${serverURL}:${serverPort}/blogs`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate
@@ -80,7 +80,7 @@ const App = () => {
       setCurrentBlogPosts(response.data)
     })
       .catch((error) => {
-        console.log('UH OH DUDE THE BLOGS ARE BORKED', error);
+        console.log('UH OH DUDES THE BLOGS ARE BORKED', error);
       });
   }
 
