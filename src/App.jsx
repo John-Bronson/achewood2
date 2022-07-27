@@ -110,11 +110,26 @@ const App = () => {
             </div>
 
             <ComicStrip stripURL={currentStrip} />
+
+            {
+              (() => {
+
+                if (currentBlogPosts.length === 0) {
+                  return <h1>no blog posts on this day (IIFE!)</h1>
+                } else {
+                  return currentBlogPosts.map(currentPost => <BlogPost currentPost={currentPost} key={currentPost.id} />)
+                }
+
+              })()
+
+            }
+
             {currentBlogPosts.length === 0 ?
               <h1>no blog posts on this day</h1>
               :
               currentBlogPosts.map(currentPost => <BlogPost currentPost={currentPost} key={currentPost.id} />)
             }
+
             <img src="https://achewood.com/img/achewood_buy_print_button_v2.png" width="350"></img>
           </div>
         </div>
