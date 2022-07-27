@@ -5,7 +5,7 @@ const { serverPort } = require('../config.js')
 
 let comicsArchive = require('../comicsArchive.js')
 
-const { getContent } = require('../database/index.js')
+// const { getContent } = require('../database/index.js')
 
 //const fs = require('fs/promises')
 //const puppeteer = require('puppeteer')
@@ -86,7 +86,7 @@ function convertStripURL(dateString) {
 }
 
 function getComicFromDate(date) {
-  getContent(date)
+  //getContent(date)
   for (i = 0; i < comicsArchive.length; i++) {
     if (datesAreOnSameDay(date, new Date(comicsArchive[i][0]))) {
 

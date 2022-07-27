@@ -44,9 +44,9 @@ const App = () => {
       document.removeEventListener('keydown', handleKeyPress)
     }
   }, [handleKeyPress])
-
+  
   const getTodayStrip = () => {
-    console.log(`getting today's strip`)
+    console.log(`getting today's strip at ${serverURL}`)
     axios({
       method: 'get',
       url: `${serverURL}/strip/`,
@@ -60,7 +60,7 @@ const App = () => {
       setCurrentStrip(response.data)
     })
       .catch((error) => {
-        console.log(error);
+        console.log('UH OH DUDE THE STRIPS ARE BORKED:', error);
       });
   }
 
@@ -80,7 +80,7 @@ const App = () => {
       setCurrentBlogPosts(response.data)
     })
       .catch((error) => {
-        console.log(error);
+        console.log('UH OH DUDE THE BLOGS ARE BORKED', error);
       });
   }
 
