@@ -46,10 +46,10 @@ const App = () => {
   }, [handleKeyPress])
 
   const getTodayStrip = () => {
-    console.log(`getting today's strip at ${serverURL} with date ${currentDate}`)
+    console.log(`getting today's strip at ${serverURL}:${serverPort}/strip/ with date ${currentDate}`)
     axios({
       method: 'get',
-      url: `${serverURL}:${serverPort}/strip/`,
+      url: `http://${serverURL}:${serverPort}/strip/`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate.toString()
@@ -68,7 +68,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: `${serverURL}:${serverPort}/blogs`,
+      url: `http://${serverURL}:${serverPort}/blogs`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate
