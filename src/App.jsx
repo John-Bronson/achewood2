@@ -10,7 +10,7 @@ import Footer from './Footer.jsx'
 import ComicStrip from './ComicStrip.jsx'
 import BlogPost from './BlogPost.jsx'
 
-const { API_KEY, serverURL, serverPort } = require('../config.js')
+const { API_KEY, apiURL, apiPort, serverPort } = require('../config.js');
 
 const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date('2004-07-01T15:00:00.000Z'))
@@ -46,10 +46,10 @@ const App = () => {
   }, [handleKeyPress])
 
   const getTodayStrip = () => {
-    console.log(`getting today's strip at ${serverURL}:${serverPort}/strip/ with date ${currentDate}`)
+    console.log(`getting today's strip at ${apiURL}:${apiPort}/strip/ with date ${currentDate}`)
     axios({
       method: 'get',
-      url: `http://${serverURL}:${serverPort}/strip/`,
+      url: `http://${apiURL}:${apiPort}/strip/`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate.toString()
@@ -68,7 +68,7 @@ const App = () => {
     console.log('getting blog posts')
     axios({
       method: 'get',
-      url: `http://${serverURL}:${serverPort}/blogs`,
+      url: `http://${apiURL}:${apiPort}/blogs`,
       headers: {
         'Content-Type': 'application/json',
         'referencedate': currentDate

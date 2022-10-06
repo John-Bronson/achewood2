@@ -3,8 +3,7 @@ const app = express()
 const axios = require('axios')
 const cors = require('cors')
 const { API_KEY } = require('../config.js')
-const { serverPort } = require('../config.js')
-
+const { webServerPort } = require('../config.js')
 let comicsArchive = require('../comicsArchive.js')
 
 // const { getContent } = require('../database/index.js')
@@ -176,6 +175,6 @@ app.get('/blogs/', (req, res) => {
   }
 })
 
-app.listen(serverPort, () => {
-  console.log(`Achewood Aggregator listening on port ${serverPort}`)
+app.listen(webServerPort, () => {
+  console.log(`Achewood Aggregator listening on port ${webServerPort}`)
 })
