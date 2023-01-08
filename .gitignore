@@ -5,3 +5,5 @@ notes.txt
 dist/bundle.js
 fbpost.txt
 package-lock.json
+server/log.txt
+src/log.txt
